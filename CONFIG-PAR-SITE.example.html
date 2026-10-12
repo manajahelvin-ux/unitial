@@ -1,0 +1,45 @@
+<!-- ============================================================
+     ComparateurPro — Configuration CRM par site
+     ------------------------------------------------------------
+     À coller dans le <head> de chaque site, AVANT la ligne
+     <script src="js/script.js" defer></script>.
+
+     Le fichier js/script.js est IDENTIQUE sur tous les sites :
+     seul ce bloc change. C'est `formIds` qui permet au CRM unique
+     de distinguer les sites et les formulaires.
+
+     Sans ce bloc, les valeurs par défaut de script.js s'appliquent
+     (CRM helloleadpreprod + Google Sheet du groupe,
+      formIds ADW_LP_ASSURANCE_TNS_ETUDE / _CONTACT).
+     ============================================================ -->
+<script>
+  window.COMPARATEURPRO_CONFIG = {
+    /* Endpoint CRM (get_information.php) — le même pour tous les sites. */
+    leadApiUrl: 'https://mc.helloleadpreprod.fr/mon_compte/api/webflow/get_information.php',
+
+    /* 'nocors' : POST simple en text/plain → zéro pré-vol OPTIONS,
+                  le PHP n'a pas besoin d'en-têtes CORS (défaut recommandé).
+       'cors'   : réponse vérifiable — exige les en-têtes CORS côté PHP.
+       'off'    : désactive l'envoi CRM (diagnostic). */
+    leadApiMode: 'nocors',
+
+    /* Google Sheet partagé — le même pour tous les sites. */
+    googleScriptUrl: 'https://script.google.com/macros/s/AKfycbwrbyCb9-cAmIRPGNvnb-aM-CkhQAerrkfP3_HSw-ewmThxsn4vbZt5daaq2aOnL01a1w/exec',
+
+    /* ★ LA clé qui distingue ce site dans le CRM unique. ★ */
+    formIds: {
+      lead: 'ADW_LP_ASSURANCE_TNS_ETUDE',
+      contact: 'ADW_LP_ASSURANCE_TNS_CONTACT'
+    },
+
+    /* true → les payloads s'affichent en console à chaque soumission. */
+    debug: false
+  };
+</script>
+
+<!-- Diagnostic disponible en console une fois la page chargée :
+       window.comparateurproLead.config     → endpoints + formIds actifs
+       window.comparateurproLead.preview()  → payloads prêts pour Postman
+       window.comparateurproLead.tracking() → 18 clés utm_*/ltm_*/gclid capturées
+       window.comparateurproLead.last()     → résultat du dernier envoi
+-->

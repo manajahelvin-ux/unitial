@@ -1,0 +1,29 @@
+# ComparateurPro — directives d'indexation
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /admin/
+
+# Moteurs et assistants IA : accès autorisé aux contenus éditoriaux (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.comparateurpro.fr/sitemap.xml
